@@ -1,0 +1,43 @@
+{
+  "livros": [
+    {
+      "id": 1,
+      "nome": "JavaScript: O guia definitivo",
+      "autor": "David Flanagan",
+      "preco": 10.5,
+      "publicacao": "2020-04-03"
+    },
+    {
+      "id": 2,
+      "nome": "O melhor do JavaScript",
+      "autor": "Douglas Cockford",
+      "publicacao": "2020-04-04"
+    },
+    {
+      "id": 3,
+      "nome": "JavaScript Design Patterns",
+      "autor": "Addy Osmani",
+      "preco": 27.99
+    },
+    {
+      "id": 4,
+      "nome": "O código limpo",
+      "autor": "Robert Martin",
+      "preco": "10.99"
+    },
+    {
+      "nome": "Domain-Driven Design",
+      "autor": "Eric Evans",
+      "preco": 454.08,
+      "publicacao": "2000-01-01",
+      "id": 5
+    },
+    {
+      "nome": "The Pragmatic Programmer",
+      "autor": "Andrew Hunt",
+      "preco": "381.99",
+      "publicacao": "2000-01-01",
+      "id": 6
+    }
+  ]
+}
