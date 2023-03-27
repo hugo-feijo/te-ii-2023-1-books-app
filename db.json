@@ -1,4 +1,30 @@
 {
+  "autores": [
+    {
+      "id": 1,
+      "nome": "Martin Fowler",
+      "dataNascimento": "1963-12-18",
+      "genero": "M"
+    },
+    {
+      "id": 2,
+      "nome": "Robert C. Martin",
+      "dataNascimento": "1964-12-18",
+      "genero": "M"
+    },
+    {
+      "id": 3,
+      "nome": "Eric Evans",
+      "dataNascimento": "1965-12-18",
+      "genero": "M"
+    },
+    {
+      "id": 4,
+      "nome": "Douglas Cockford",
+      "dataNascimento": "1966-12-18",
+      "genero": "M"
+    }
+  ],
   "livros": [
     {
       "id": 1,
