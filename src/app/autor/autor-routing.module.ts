@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { Route, RouterModule } from "@angular/router";
+import { AutorFormPageComponent } from "./components/autor-form-page/autor-form-page.component";
 import { AutorListPageComponent } from "./components/autor-list-page/autor-list-page.component";
 
 const routes: Route[] = [
@@ -11,6 +12,14 @@ const routes: Route[] = [
     {
         path: 'lista',
         component: AutorListPageComponent
+    },
+    {
+      path: 'cadastro',
+      component: AutorFormPageComponent
+    },
+    {
+      path: 'edicao/:id',
+      component: AutorFormPageComponent
     }
 ]
 
