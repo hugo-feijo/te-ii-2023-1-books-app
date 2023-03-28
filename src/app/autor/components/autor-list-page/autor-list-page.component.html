@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-list *ngIf="autores$ | async as autores">
+  <ion-list>
       <ion-item *ngFor="let autor of autores">
         <ion-label>{{autor.nome}}</ion-label>
         <ion-icon name="create" slot="end" [routerLink]="['../edicao/', autor.id]"></ion-icon>

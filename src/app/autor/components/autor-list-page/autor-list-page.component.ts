@@ -1,7 +1,7 @@
 
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { AlertController } from "@ionic/angular";
-import { Observable } from "rxjs";
+import { Observable, Subscription } from "rxjs";
 import { AutorService } from "../../services/autor.service";
 import { AutorInterface } from "../../types/autor.interface";
 
@@ -9,11 +9,19 @@ import { AutorInterface } from "../../types/autor.interface";
     selector: 'app-autor-list-page',
     templateUrl: './autor-list-page.component.html'
 }) 
-export class AutorListPageComponent {
+export class AutorListPageComponent implements OnInit, OnDestroy {
 
-    autores$: Observable<AutorInterface[]> = this.autorService.getAutores();
+    autores: AutorInterface[] = [];
+    subscriptions = new Subscription();
 
     constructor(private autorService: AutorService, private alertController: AlertController) {}
+
+    ngOnInit(): void {
+      this.listAutor();
+    }
+    ngOnDestroy (): void {
+      this.subscriptions.unsubscribe();
+    }
 
     async remove(autor: AutorInterface) {
       const alert = await this.alertController.create({
@@ -24,7 +32,10 @@ export class AutorListPageComponent {
             text: 'Sim',
             role: 'confirm',
             handler: () => {
-              console.log(autor)
+              this.subscriptions.add(
+                this.autorService.remove(autor)
+                .subscribe(() => this.listAutor())
+              );
             },
           },
           {
@@ -35,5 +46,12 @@ export class AutorListPageComponent {
       });
   
       await alert.present();
+    }
+
+    listAutor() {
+      this.subscriptions.add(
+        this.autorService.getAutores()
+        .subscribe((autoresReturn) => this.autores = autoresReturn)
+      );
     }
 }  

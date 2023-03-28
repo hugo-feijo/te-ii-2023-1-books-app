@@ -15,4 +15,8 @@ export class AutorService {
             `${environment.apiUrl}/autores`
         )
     }
+
+    remove({ id }: AutorInterface): Observable<void> {
+      return this.httpClient.delete<void>(`${environment.apiUrl}/autores/${id}`)
+    }
 }
