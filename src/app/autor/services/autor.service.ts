@@ -16,6 +16,10 @@ export class AutorService {
         )
     }
 
+    save(autor: AutorInterface): Observable<AutorInterface> {
+      return this.httpClient.post<AutorInterface>(`${environment.apiUrl}/autores`, autor);
+    }
+    
     remove({ id }: AutorInterface): Observable<void> {
       return this.httpClient.delete<void>(`${environment.apiUrl}/autores/${id}`)
     }
