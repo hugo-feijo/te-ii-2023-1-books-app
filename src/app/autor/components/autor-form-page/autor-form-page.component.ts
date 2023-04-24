@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AutorService } from '../../services/autor.service';
@@ -49,10 +49,18 @@ export class AutorFormPageComponent implements OnInit, OnDestroy {
     }
 
     this.autorForm = this.formBuilder.group({
-      nome: 'Nome qualquer',
+      nome: [
+        'Nome qualquer',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(50),
+          this.validaNomeAutorTeste(),
+        ]
+      ],
       genero: 'F',
       dataNascimento: '1970-01-01',
-      biografia: 'Biografia qualquer'
+      biografia: ['Biografia qualquer', Validators.required]
     })
   }
 
@@ -106,4 +114,10 @@ export class AutorFormPageComponent implements OnInit, OnDestroy {
   }
 
 
+  validaNomeAutorTeste(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const value = control.value.toLowerCase();
+      return value.includes('teste') || value.includes('xyz') ? { invalidName: true } : null;
+    };
+  }
 }

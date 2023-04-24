@@ -19,10 +19,11 @@
       "genero": "M"
     },
     {
-      "id": 4,
-      "nome": "Douglas Cockford",
+      "nome": "Douglas Cockford 2",
+      "genero": "F",
       "dataNascimento": "1966-12-18",
-      "genero": "M"
+      "biografia": null,
+      "id": 4
     }
   ],
   "livros": [
