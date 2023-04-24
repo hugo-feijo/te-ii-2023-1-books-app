@@ -1,18 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Route, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AutorService } from '../../services/autor.service';
 
 @Component({
   selector: 'app-autor-form-page',
   templateUrl: './autor-form-page.component.html',
 })
-export class AutorFormPageComponent implements OnInit {
+export class AutorFormPageComponent implements OnInit, OnDestroy {
 
   autorForm!: FormGroup
 
   createMode: boolean = false;
   editMode: boolean = false;
+  subscriptions = new Subscription();
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -34,14 +36,23 @@ export class AutorFormPageComponent implements OnInit {
     })
   }
 
+  ngOnDestroy (): void {
+    this.subscriptions.unsubscribe();
+  }
+
   save(): void {
     console.log(this.autorForm.value);
 
-    this.autorService.save(this.autorForm.value).subscribe(
-      () => {
-        // TODO mensagem de sucesso
-        this.router.navigate(['./autores'])
-      }
+    this.subscriptions.add(
+      this.autorService.save(this.autorForm.value).subscribe(
+        () => {
+          // TODO mensagem de sucesso
+          this.router.navigate(['./autores'])
+        },
+        () => {
+
+        }
+      )
     )
   }
 
