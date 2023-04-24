@@ -10,6 +10,12 @@ export class AutorService {
 
     constructor(private httpClient: HttpClient) {}
 
+    getAutor(id: number): Observable<AutorInterface> {
+      return this.httpClient.get<AutorInterface>(
+        `${environment.apiUrl}/autores/${id}`
+      )
+    }
+    
     getAutores(): Observable<AutorInterface[]> {
         return this.httpClient.get<AutorInterface[]>(
             `${environment.apiUrl}/autores`
@@ -22,5 +28,12 @@ export class AutorService {
     
     remove({ id }: AutorInterface): Observable<void> {
       return this.httpClient.delete<void>(`${environment.apiUrl}/autores/${id}`)
+    }
+
+    update(autor: AutorInterface): Observable<AutorInterface> {
+      return this.httpClient.put<AutorInterface>(
+        `${environment.apiUrl}/autores/${autor.id}`,
+        autor
+      )
     }
 }
